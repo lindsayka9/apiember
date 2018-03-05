@@ -1,5 +1,5 @@
 class PostsController < OpenReadController
-  before_action :set_post, only: [:show, :update, :destroy]
+  before_action :set_post, only: [:update, :destroy]
 
   # GET /posts
   def index
@@ -10,12 +10,12 @@ class PostsController < OpenReadController
 
   # GET /posts/1
   def show
-    render json: @post
+    render json: Post.find(params[:id])
   end
 
   # POST /posts
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
 
     if @post.save
       render json: @post, status: :created, location: @post
@@ -41,7 +41,7 @@ class PostsController < OpenReadController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = current_user.posts.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
