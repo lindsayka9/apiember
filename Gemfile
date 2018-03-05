@@ -5,10 +5,13 @@ ruby '2.4.1'
 
 gem 'active_model_serializers', '~> 0.10.6'
 gem 'bcrypt', '~> 3.1.11'
+# gem 'fullcalendar-rails'
+# gem 'momentjs-rails'
 gem 'pg', '~> 0.21'
 gem 'puma', '~> 3.11.2'
 gem 'rack-cors', '~> 1.0.2', require: 'rack/cors'
 gem 'rails', '~> 5.1.3'
+# gem 'simple_calendar', '~> 2.0'
 
 group :development, :test do
   gem 'byebug', '~> 10.0.0', platform: :mri
