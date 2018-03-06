@@ -5,6 +5,7 @@ curl --include --request GET "http://localhost:4741/comments/${ID}" \
   --header "Content-Type: application/json" \
   --data '{
     "comment": {
-      "content": "'"${CONTENT}"'"
+      "content": "'"${CONTENT}"'",
+      "post": "'"${POSTID}"'"
     }
   }'
