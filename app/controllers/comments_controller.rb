@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CommentsController < OpenReadController
-  before_action :set_comment, only: [:show, :update, :destroy]
+  before_action :set_comment, only: %i[update destroy]
 
   # GET /comments
   def index
@@ -10,6 +12,7 @@ class CommentsController < OpenReadController
 
   # GET /comments/1
   def show
+    @comment = Comment.find(params[:id])
     render json: @comment
   end
 
@@ -39,13 +42,12 @@ class CommentsController < OpenReadController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = current_user.comments.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def comment_params
-      params.require(:comment).permit(:content, :post_id)
+      params.require(:comment).permit(:post_id, :text)
     end
 end

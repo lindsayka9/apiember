@@ -1,10 +1,12 @@
-class PostSerializer < ActiveModel::Serializer
-  attributes :id, :title, :content, :editable
+# frozen_string_literal: true
 
+class PostSerializer < ActiveModel::Serializer
+  attributes :id, :title, :content, :user_id, :editable, :comments
   def editable
     scope == object.user
   end
 
-  has_many :comments
-  belongs_to :user
+  def comments
+    object.comments.pluck(:id)
+  end
 end
