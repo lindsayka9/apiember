@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class UsersController < ProtectedController
-  before_action :set_user, only: %i[update show]
-  skip_before_action :authenticate, only: %i[signup signin]
+  before_action :set_user, only: %i[update]
+  skip_before_action :authenticate, only: %i[signup signin index show]
 
   # POST '/sign-up'
   def signup
@@ -52,7 +52,7 @@ class UsersController < ProtectedController
   end
 
   def show
-    render json: @user
+    render json: User.find(params[:id])
   end
 
   def update
